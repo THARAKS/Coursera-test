@@ -1,10 +1,46 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en" ng-app='LunchCheck'>
   <head>
-    <meta charset="utf-8">
-    <title>Coursera</title>
+    <title >Lunch Checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <style>
+      .message { font-size: 1.3em; font-weight: bold; color:green;
+      }
+      .fontsize{
+        font-size: 0.4em;
+      }
+
+    </style>
+    <script src="angular.min.js">
+    </script>
+    <script type="text/javascript" src="app.js">
+    </script>
   </head>
-  <body>
-  <h1>Welcome to coursera students!!</h1>  
-  </body>
+<body ng-controller='LunchCheckController'>
+    <form name="lunchForm" ng-submit="splitString(dishes)" novalidate>
+   <div class="container">
+ <h1>Lunch Checker <span> <a href="#" class="fontsize" data-toggle="tooltip" data-placement="right" title=" We do NOT consider  empty item, i.e., , , as an item towards to the count!">more-info</a></span></h1>
+         <div class="form-group" ng-class="{ 'has-error' : lunchForm.dishes.$invalid && (lunchForm.$submitted  ),'has-success': message}" >
+             <input id="lunch-menu"
+              type="text"
+             placeholder="list comma separated dishes you usually have for lunch"
+             class="form-control"
+             ng-model="dishes"
+             name="dishes"
+             required>
+          <p ng-show="lunchForm.dishes.$invalid &&  (lunchForm.$submitted  ) " class="help-block">Please enter data first.</p>
+
+         </div>
+         <div class="form-group">
+             <button type="submit" class="btn btn-default" >Check If Too Much</button>
+         </div>
+         <div class="form-group message">
+           <!-- Your message can go here. -->
+           {{message}}
+         </div>
+   </div>
+ </form>
+
+</body>
 </html>
